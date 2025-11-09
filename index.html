@@ -3,306 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="FLEX: Inheritable Intelligence via Forward Learning from Scaling Experience - A novel learning paradigm for AI agents">
-    <meta name="keywords" content="FLEX, Forward Learning, Experience Library, AI, Machine Learning, AIME, USPTO50k, ProteinGym">
-    <title>FLEX: Forward Learning from Experience</title>
+    <meta name="description" content="FLEX: Inheritable Intelligence via Forward Learning from Scaling Experience - A revolutionary learning paradigm for AI agents and the foundation of a breakthrough research series.">
+    <meta name="keywords" content="FLEX, Forward Learning, Experience Library, AI, Machine Learning, AIME, USPTO50k, ProteinGym, Inheritable Intelligence">
+    <meta name="author" content="FLEX Research Team - Tsinghua AIR & ByteDance Seed">
+    <title>FLEX: Forward Learning from Experience | Research Series</title>
     
+    <!-- External Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/series.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Inline Critical Styles for Components Not Yet Extracted -->
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Domain Highlight Cards */
+        .domain-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #3b82f6;
-            --text-color: #1f2937;
-            --light-bg: #f9fafb;
-            --white: #ffffff;
-            --border-color: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .domain-card {
+            background: linear-gradient(135deg, var(--white) 0%, #f9fafb 100%);
+            padding: 1.8rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
+        .domain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-left-width: 6px;
+        }
+
+        .domain-card.math { border-left-color: #3b82f6; }
+        .domain-card.chemistry { border-left-color: #10b981; }
+        .domain-card.biology { border-left-color: #8b5cf6; }
+
+        .domain-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .domain-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: var(--text-color);
-            background-color: var(--white);
         }
 
-        /* Logo Bar */
-        .logo-bar {
-            background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
-            padding: 1.8rem 2rem;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        .domain-benchmark {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .metric-highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .metric-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .logo-bar::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(59, 130, 246, 0.3) 25%, 
-                rgba(147, 51, 234, 0.3) 75%, 
-                transparent 100%);
-        }
-
-        .logo-container {
-            display: flex;
-            gap: 3.5rem;
-            align-items: center;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .logo-bar img {
-            height: 52px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
-            transition: all 0.3s ease;
-        }
-
-        .logo-bar img:hover {
-            transform: translateY(-2px) scale(1.05);
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f0f9ff 100%);
-            color: var(--text-color);
-            padding: 3rem 2rem 2.5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        header > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
-            animation: fadeInDown 0.8s ease-out;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1.3;
-            letter-spacing: -0.02em;
-        }
-
-        .subtitle {
-            font-size: 1.4rem;
-            font-weight: 500;
-            background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 0.8s ease-out;
-            margin-bottom: 2.5rem;
-            line-height: 1.4;
-        }
-
-        /* Authors Section */
-        .authors {
-            margin: 2.5rem auto 1.5rem auto;
-            font-size: 1.15rem;
-            line-height: 2;
-            color: var(--text-color);
-            max-width: 900px;
-            font-weight: 500;
-        }
-
-        .author-name {
-            display: inline;
-            margin-right: 0.3rem;
-            transition: color 0.3s ease;
-        }
-
-        .author-name:hover {
-            color: var(--primary-color);
-        }
-
-        .author-name sup {
-            font-size: 0.75em;
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        .author-separator {
-            margin: 0 0.3rem;
-            color: #9ca3af;
-        }
-
-        /* Affiliations */
-        .affiliations {
-            margin: 1.5rem auto;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #6b7280;
-            max-width: 800px;
-            padding: 1.5rem 2rem;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .affiliation {
-            display: block;
             margin-bottom: 0.5rem;
         }
 
-        .affiliation sup {
-            font-size: 0.85em;
-            color: var(--primary-color);
-            font-weight: 700;
-            margin-right: 0.3rem;
-            background: linear-gradient(135deg, #3b82f6, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .metric-row:last-child { margin-bottom: 0; }
 
-        /* Footer Notes */
-        .footer-notes {
-            margin-top: 2rem;
-            padding: 1.5rem 2rem;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            font-size: 0.9rem;
+        .metric-label {
+            font-size: 0.85rem;
             color: #6b7280;
-            line-height: 1.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        .footer-notes p {
-            margin: 0.4rem 0;
-        }
-
-        .correspondence {
-            margin-top: 0.8rem;
-            font-weight: 500;
-        }
-
-        .correspondence a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .correspondence a:hover {
-            text-decoration: underline;
-            color: var(--accent-color);
-        }
-
-        /* Navigation */
-        nav {
-            background-color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-            padding: 0.5rem 1rem;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Section */
-        section {
-            margin-bottom: 4rem;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        section h2 {
-            font-size: 2rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--accent-color);
-            display: inline-block;
-        }
-
-        section p {
+        .metric-value {
             font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            color: #4b5563;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
-        /* Contribution Cards */
+        .improvement-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Contributions Grid */
         .contributions {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -348,32 +146,6 @@
             padding-right: 3rem;
         }
 
-        /* Image Container */
-        .image-container {
-            margin: 2rem 0;
-            text-align: center;
-            animation: fadeIn 1s ease-out;
-        }
-
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            transition: transform 0.3s ease;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.02);
-        }
-
-        .image-caption {
-            margin-top: 1rem;
-            font-style: italic;
-            color: #6b7280;
-            font-size: 0.95rem;
-        }
-
         /* Results Section */
         .results {
             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
@@ -411,7 +183,166 @@
             font-size: 1.2rem;
         }
 
-        /* Call to Action */
+        /* Image Container */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.02);
+        }
+
+        .image-caption {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* Authors Section Inline Styles */
+        .authors {
+            margin: 2.5rem auto 1.5rem auto;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text-color);
+            max-width: 900px;
+            font-weight: 500;
+        }
+
+        .author-name {
+            display: inline;
+            margin-right: 0.3rem;
+            transition: color 0.3s ease;
+        }
+
+        .author-name:hover {
+            color: var(--primary-color);
+        }
+
+        .author-name sup {
+            font-size: 0.75em;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .author-separator {
+            margin: 0 0.3rem;
+            color: #9ca3af;
+        }
+
+        .affiliations {
+            margin: 1.5rem auto;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #6b7280;
+            max-width: 800px;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .affiliation {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .affiliation sup {
+            font-size: 0.85em;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-right: 0.3rem;
+        }
+
+        .footer-notes {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-notes p {
+            margin: 0.4rem 0;
+        }
+
+        .correspondence {
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        .correspondence a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .correspondence a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        /* CTA Section */
         .cta {
             position: relative;
             text-align: center;
@@ -435,28 +366,6 @@
             animation: pulse 4s ease-in-out infinite;
         }
 
-        .cta::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
-            background-size: 200% 200%;
-            animation: shimmer 3s linear infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(10%, 10%) scale(1.1); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
         .cta-content {
             position: relative;
             z-index: 1;
@@ -469,7 +378,6 @@
             font-size: 3rem;
             font-weight: 800;
             text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease;
         }
 
         .cta-emoji {
@@ -479,18 +387,12 @@
             animation: bounce 2s ease-in-out infinite;
         }
 
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
         .cta p {
             color: white;
             font-size: 1.4rem;
             margin-bottom: 2.5rem;
             opacity: 0.95;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease 0.3s both;
         }
 
         .cta-buttons {
@@ -498,79 +400,6 @@
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-
-        .btn {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1.2rem 2.5rem;
-            background: white;
-            color: #1e40af;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            color: #78350f;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
-        }
-
-        .btn-secondary {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.5);
-        }
-
-        .btn-icon {
-            position: relative;
-            z-index: 1;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-
-        .btn:hover .btn-icon {
-            transform: translateX(5px);
         }
 
         .cta-stats {
@@ -583,7 +412,6 @@
 
         .stat-item {
             text-align: center;
-            animation: fadeInUp 1s ease 0.9s both;
         }
 
         .stat-number {
@@ -603,257 +431,275 @@
             letter-spacing: 1px;
         }
 
-        @media (max-width: 768px) {
-            .cta {
-                padding: 3rem 1.5rem;
-            }
-
-            .cta h2 {
-                font-size: 2rem;
-            }
-
-            .cta-emoji {
-                font-size: 3rem;
-            }
-
-            .cta p {
-                font-size: 1.1rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .cta-stats {
-                gap: 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-        }
-
-        /* Footer */
-        footer {
-            background-color: #1f2937;
-            color: var(--white);
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .logo-bar {
-                justify-content: center;
-                padding: 1.2rem 1rem;
-            }
-
-            .logo-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .logo-bar img {
-                height: 40px;
-            }
-
-            header {
-                padding: 2rem 1.5rem;
-            }
-
-            h1 {
-                font-size: 1.8rem;
-                letter-spacing: -0.01em;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .authors {
-                font-size: 1rem;
-                line-height: 1.8;
-            }
-
-            .affiliations {
-                font-size: 0.9rem;
-                padding: 1rem 1.5rem;
-            }
-
-            .footer-notes {
-                font-size: 0.85rem;
-                padding: 1rem 1.5rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            section h2 {
-                font-size: 1.5rem;
-            }
-
-            .contributions {
-                grid-template-columns: 1fr;
-            }
-
-            .contribution-card p {
-                padding-right: 3.5rem;
-            }
-        }
-
-        /* Domain Highlight Cards */
-        .domain-highlights {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+        /* Case Study Styles */
+        .case-study-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
             margin: 2rem 0;
+            flex-wrap: wrap;
         }
 
-        .domain-card {
-            background: linear-gradient(135deg, var(--white) 0%, #f9fafb 100%);
-            padding: 1.8rem;
+        .tab-button {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border: 2px solid var(--border-color);
+            padding: 1rem 2rem;
             border-radius: 12px;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-color);
+            cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .domain-card:hover {
-            transform: translateY(-5px);
+        .tab-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border-color: var(--primary-color);
             box-shadow: var(--shadow-lg);
-            border-left-width: 6px;
         }
 
-        .domain-card.math {
-            border-left-color: #3b82f6;
+        .tab-button .tab-icon {
+            font-size: 1.5rem;
         }
 
-        .domain-card.chemistry {
-            border-left-color: #10b981;
+        .case-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .domain-card.biology {
-            border-left-color: #8b5cf6;
-        }
-
-        .domain-icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.8rem;
+        .case-content.active {
             display: block;
         }
 
-        .domain-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
+        .case-image {
+            margin: 2rem 0;
+            text-align: center;
         }
 
-        .domain-benchmark {
-            font-size: 0.9rem;
-            color: #6b7280;
+        .case-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid var(--border-color);
+        }
+
+        .case-analysis {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        .case-analysis h4 {
+            color: var(--primary-color);
+            margin-top: 0;
             margin-bottom: 1rem;
+            font-size: 1.3rem;
         }
 
-        .metric-highlight {
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        .case-analysis p {
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .case-highlight {
+            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #92400e;
+        }
+
+        .case-key-point {
+            background: linear-gradient(120deg, #dbeafe 0%, #bfdbfe 100%);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+
+        /* Discussion Styles */
+        .discussion-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .discussion-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+            border-left: 4px solid #2563eb;
+            transition: all 0.3s ease;
+        }
+
+        .discussion-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
+        }
+
+        .discussion-card h4 {
+            color: #1e40af;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .discussion-section {
+            margin-bottom: 1.5rem;
             padding: 1rem;
             border-radius: 8px;
-            margin-top: 1rem;
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
         }
 
-        .metric-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-row:last-child {
+        .discussion-section:last-child {
             margin-bottom: 0;
         }
 
-        .metric-label {
-            font-size: 0.85rem;
-            color: #6b7280;
-        }
-
-        .metric-value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .improvement-badge {
+        .section-label {
             display: inline-block;
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
             font-weight: 600;
-            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            color: #1e40af;
         }
 
-        @media (max-width: 768px) {
-            .domain-highlights {
-                grid-template-columns: 1fr;
-            }
+        .section-label.goal {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #92400e;
         }
 
-        /* Scaling Law Cards */
+        .section-label.history {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            color: #3730a3;
+        }
+
+        .section-label.contribution {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+        }
+
+        .discussion-section p {
+            margin: 0.5rem 0 0 0;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        /* Results Table Styles */
+        .results-table-container {
+            margin-top: 2rem;
+        }
+
+        .toggle-table-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .toggle-table-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .results-table {
+            width: 100%;
+            overflow-x: auto;
+            margin: 2rem 0;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .results-table.show {
+            display: block;
+        }
+
+        .results-table table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .results-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .results-table td {
+            text-align: center;
+        }
+
+        .results-table tr:hover {
+            background-color: var(--light-bg);
+        }
+
+        .results-table .benchmark-header {
+            background-color: #f3f4f6;
+            color: var(--text-color);
+            font-weight: 600;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .results-table .model-name {
+            font-style: italic;
+            text-align: left;
+        }
+
+        .improvement-positive {
+            color: #2563eb;
+        }
+
+        .improvement-negative {
+            color: #dc2626;
+        }
+
+        .best-result {
+            font-weight: bold;
+        }
+
+        /* Scaling Regimes Styles */
         .scaling-regimes {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1010,280 +856,7 @@
             color: var(--primary-color);
         }
 
-        @media (max-width: 768px) {
-            .scaling-regimes {
-                grid-template-columns: 1fr;
-            }
-
-            .inheritance-effects {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Discussion Cards */
-        .discussion-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .discussion-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-            border-left: 4px solid #2563eb;
-            transition: all 0.3s ease;
-        }
-
-        .discussion-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
-        }
-
-        .discussion-card h4 {
-            color: #1e40af;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .discussion-section {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
-        }
-
-        .discussion-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .section-label {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
-            color: #1e40af;
-        }
-
-        .section-label.goal {
-            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-            color: #92400e;
-        }
-
-        .section-label.history {
-            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
-            color: #3730a3;
-        }
-
-        .section-label.contribution {
-            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-            color: #065f46;
-        }
-
-        .discussion-section p {
-            margin: 0.5rem 0 0 0;
-            line-height: 1.7;
-            color: #374151;
-        }
-
-        @media (max-width: 768px) {
-            .discussion-card {
-                padding: 1.5rem;
-            }
-
-            .discussion-card h4 {
-                font-size: 1.1rem;
-            }
-
-            .discussion-section {
-                padding: 0.75rem;
-            }
-        }
-
-        /* Case Study Tabs */
-        .case-study-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-            border: 2px solid var(--border-color);
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tab-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .tab-button.active {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-            color: white;
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .tab-button .tab-icon {
-            font-size: 1.5rem;
-        }
-
-        .case-content {
-            display: none;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        .case-content.active {
-            display: block;
-        }
-
-        .case-image {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .case-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: var(--shadow-lg);
-            border: 2px solid var(--border-color);
-        }
-
-        .case-analysis {
-            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
-            padding: 2rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary-color);
-            margin-top: 1.5rem;
-        }
-
-        .case-analysis h4 {
-            color: var(--primary-color);
-            margin-top: 0;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .case-analysis p {
-            line-height: 1.8;
-            color: #374151;
-        }
-
-        .case-highlight {
-            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-weight: 700;
-            color: #92400e;
-        }
-
-        .case-key-point {
-            background: linear-gradient(120deg, #dbeafe 0%, #bfdbfe 100%);
-            padding: 0.15rem 0.4rem;
-            border-radius: 4px;
-            font-weight: 700;
-            color: #1e40af;
-        }
-
-        @media (max-width: 768px) {
-            .case-study-tabs {
-                flex-direction: column;
-            }
-
-            .tab-button {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        /* Results Table */
-        .results-table {
-            width: 100%;
-            overflow-x: auto;
-            margin: 2rem 0;
-        }
-
-        .results-table table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .results-table th,
-        .results-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .results-table th {
-            background-color: var(--primary-color);
-            color: var(--white);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .results-table td {
-            text-align: center;
-        }
-
-        .results-table tr:hover {
-            background-color: var(--light-bg);
-        }
-
-        .results-table .benchmark-header {
-            background-color: #f3f4f6;
-            color: var(--text-color);
-            font-weight: 600;
-            font-style: italic;
-            text-align: center;
-        }
-
-        .results-table .model-name {
-            font-style: italic;
-            text-align: left;
-        }
-
-        .improvement-positive {
-            color: #2563eb;
-        }
-
-        .improvement-negative {
-            color: #dc2626;
-        }
-
-        .best-result {
-            font-weight: bold;
-        }
-
-        /* Transfer Table */
+        /* Transfer Table Styles */
         .transfer-table {
             width: 100%;
             overflow-x: auto;
@@ -1320,978 +893,1231 @@
             color: var(--white);
         }
 
-        .transfer-table .dataset-header {
-            background-color: var(--primary-color);
-            font-weight: 600;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--white);
-        }
-
         .transfer-table .model-row {
             font-style: italic;
         }
 
-        /* Subsection styling */
-        section h3 {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin: 2rem 0 1rem 0;
-            font-weight: 600;
+        /* News Section Styles */
+        .news-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.3);
+            border-left: 6px solid #f59e0b;
+            animation: slideInFromTop 0.6s ease-out;
         }
 
-        section h4 {
-            font-size: 1.2rem;
-            color: var(--text-color);
-            margin: 1.5rem 0 0.75rem 0;
-            font-weight: 600;
-        }
-        .highlight {
-            background: linear-gradient(120deg, #fef3c7 0%, #fde68a 100%);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-weight: 500;
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Code-like style for technical terms */
-        code {
-            background-color: #f3f4f6;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            color: #dc2626;
+        .news-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .news-header h2 {
+            color: #92400e;
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .news-icon {
+            font-size: 2rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #f59e0b 0%, #fbbf24 100%);
+        }
+
+        .news-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-badge {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+        }
+
+        .news-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .news-content {
+            flex: 1;
+            color: #374151;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .news-content strong {
+            color: #92400e;
+            font-weight: 700;
+        }
+
+        .news-content a {
+            color: #2563eb;
+            text-decoration: underline;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .news-content a:hover {
+            color: #1d4ed8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .news-section {
+                padding: 1.5rem;
+            }
+
+            .news-header h2 {
+                font-size: 1.5rem;
+            }
+
+            .news-item {
+                padding: 1rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .news-badge, .news-date {
+                font-size: 0.8rem;
+            }
+
+            .domain-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .contributions {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                padding: 3rem 1.5rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+
+            nav {
+                gap: 0.25rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .case-study-tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .discussion-card {
+                padding: 1.5rem;
+            }
+
+            .discussion-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .discussion-section {
+                padding: 0.75rem;
+            }
+
+            .scaling-regimes {
+                grid-template-columns: 1fr;
+            }
+
+            .inheritance-effects {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Skip to Content (Accessibility) -->
+    <a href="#main-content" class="skip-to-content">Skip to main content</a>
+
     <!-- Logo Bar -->
     <div class="logo-bar">
         <div class="logo-container">
+            <img src="asset/seed_logo.png" alt="ByteDance Seed">
             <img src="asset/AIRlogo.png" alt="AIR - Institute for AI Industry Research, Tsinghua University">
             <img src="asset/gensi_logo_black.png" alt="GenSi">
-            <img src="asset/seed_logo.png" alt="ByteDance Seed">
         </div>
     </div>
 
-    <!-- Header -->
-    <header>
-        <h1>FLEX: Inheritable Intelligence via<br>Forward Learning from Scaling Experience</h1>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-particles" id="particles"></div>
         
-        <div class="authors">
-            <span class="author-name">Zhicheng Cai<sup>1,3,*</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Xinyuan Guo<sup>1,4,*</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Yu Pei<sup>1*</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Jiangtao Feng<sup>1,†</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Ya-Qin Zhang<sup>1,3</sup></span><span class="author-separator">,</span>
-            <br>
-            <span class="author-name">Wei-Ying Ma<sup>1,3</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Mingxuan Wang<sup>2,3</sup></span><span class="author-separator">,</span>
-            <span class="author-name">Hao Zhou<sup>1,3,‡</sup></span>
-        </div>
-
-        <div class="affiliations">
-            <span class="affiliation"><sup>1</sup>Institute for AI Industry Research (AIR), Tsinghua University</span>
-            <span class="affiliation"><sup>2</sup>ByteDance Seed</span>
-            <span class="affiliation"><sup>3</sup>SIA-Lab of Tsinghua AIR and ByteDance Seed</span>
-            <span class="affiliation"><sup>4</sup>University of Chinese Academy of Sciences</span>
-        </div>
-
-        <div class="footer-notes">
-            <p><sup>*</sup>Equal Contribution, <sup>†</sup>Project Lead, <sup>‡</sup>Corresponding Author</p>
-            <p class="correspondence">✉️ Correspondence: <a href="mailto:zhouhao@air.tsinghua.edu.cn">zhouhao@air.tsinghua.edu.cn</a></p>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-            <nav>
-                <a href="#introduction">Introduction</a>
-                <a href="#key-contributions">Key Contributions</a>
-                <a href="#methodology">Methodology</a>
-                <a href="#main-results">Main Results</a>
-                <a href="#scaling-law">Scaling Law</a>
-                <a href="#inheritance">Inheritance</a>
-                <a href="#case-study">Case Study</a>
-                <a href="#discussion">Discussion</a>
-            </nav>    <!-- Main Content -->
-    <div class="container">
-        <!-- Introduction Section -->
-        <section id="introduction">
-            <h2>Introduction</h2>
-            <p>
-                Welcome to <strong>F</strong>orward <strong>L</strong>earning from <strong>Ex</strong>perience (FLEX), 
-                a novel learning paradigm that shifts learning from modifying model parameters to constructing and 
-                leveraging an evolvable experience library.
-            </p>
-            <p>
-                By continuously expanding and refining this library, agents can progressively acquire deeper insights 
-                and knowledge, enhancing their cognitive capabilities with accumulated experiences.
-            </p>
-
-            <div class="image-container">
-                <img src="asset/front_pic.png" alt="FLEX Overview - Visual representation of the Forward Learning paradigm">
-                <p class="image-caption">Overview of the FLEX paradigm showing the interaction between agents and the experience library</p>
-            </div>
-
-            <div class="results">
-                <h3>🎯 Experimental Results</h3>
-                <p>We conduct extensive experiments across diverse challenging scientific domains:</p>
-                <ul>
-                    <li><strong>AIME25</strong> (Olympiad-level mathematics): Improvement from <span class="highlight">40% to 63.3%</span></li>
-                    <li><strong>USPTO50k</strong> (Chemical retrosynthesis): Improvement from <span class="highlight">20% to 30%</span></li>
-                    <li><strong>ProteinGym</strong> (Protein fitness prediction): Substantial improvements in capacity of reasoning and knowledge leverage</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Key Contributions Section -->
-        <section id="key-contributions">
-            <h2>Key Contributions</h2>
-            <div class="contributions">
-                <div class="contribution-card">
-                    <div class="contribution-number">1</div>
-                    <p>
-                        We propose <strong>FLEX</strong>, a new learning paradigm for the agentic era. It redefines 
-                        learning as a forward exploration and experience distillation process, enabling LLM agents to 
-                        evolve dynamically without gradient-based tuning.
-                    </p>
+        <div class="hero-content">
+            <div class="hero-brand">
+                <h1 class="hero-title">FLEX: Inheritable Intelligence via Forward Learning from Scaling Experience</h1>
+                <div class="flex-logo">
+                    <img src="asset/flex_logo.png" alt="FLEX Logo" class="flex-logo-icon">
+                    <span>FLEX</span>
                 </div>
-                <div class="contribution-card">
-                    <div class="contribution-number">2</div>
-                    <p>
-                        We provide a comprehensive framework for FLEX, including a unified mathematical formulation 
-                        with theoretical justifications, a practical instantiation with concrete mechanisms, and an 
-                        empirical demonstration of its effectiveness on diverse scientific benchmarks.
-                    </p>
-                </div>
-                <div class="contribution-card">
-                    <div class="contribution-number">3</div>
-                    <p>
-                        We discover and empirically validate a <strong>scaling law</strong> for the experience library, 
-                        showing that agent performance scales predictably with accumulated knowledge and revealing a 
-                        path towards a collaborative experience ecosystem.
-                    </p>
-                </div>
-                <div class="contribution-card">
-                    <div class="contribution-number">4</div>
-                    <p>
-                        We introduce and demonstrate the principle of <strong>intelligence inheritance</strong>, where 
-                        distilled experience can be transferred between agents in a plug-and-play manner, enabling 
-                        instant knowledge assimilation and bypassing redundant learning.
-                    </p>
+                <div class="hero-tagline">
+                    <span class="tagline-text">Scaling with Experience, Not Parameters</span>
                 </div>
             </div>
-        </section>
-
-        <!-- Methodology Section -->
-        <section id="methodology">
-            <h2>Methodology</h2>
-            <p>
-                FLEX introduces a fundamentally different approach to machine learning by focusing on 
-                <strong>experience accumulation</strong> rather than parameter optimization.
+            
+            <p class="hero-description">
+                A revolutionary learning paradigm that enables AI agents to evolve through experience accumulation 
+                rather than gradient-based training, opening a new path toward <strong>inheritable intelligence</strong> 
+                and <strong>collaborative experience ecosystems</strong>.
             </p>
             
-            <div class="image-container">
-                <img src="asset/method_pic.png" alt="FLEX Methodology - Comparison between gradient-based learning and FLEX">
-                <p class="image-caption">
-                    Comparison between gradient-based learning and FLEX, highlighting the interaction among 
-                    the actor <code>π</code>, updater <code>μ</code>, and experience library <code>ℰ</code>
-                </p>
-            </div>
-
-            <p>
-                The system comprises three main components:
-            </p>
-            <ul style="list-style-position: inside; padding-left: 1rem; margin-top: 1rem;">
-                <li style="margin-bottom: 0.5rem;"><code>π</code> (Actor): Executes tasks using available experience</li>
-                <li style="margin-bottom: 0.5rem;"><code>μ</code> (Updater): Refines and expands the experience library</li>
-                <li style="margin-bottom: 0.5rem;"><code>ℰ</code> (Experience Library): Stores and organizes learned knowledge</li>
-            </ul>
-        </section>
-
-        <!-- Main Results Section -->
-        <section id="main-results">
-            <h2>Main Results</h2>
-            <p>
-                FLEX achieves <strong>consistent and significant improvements</strong> across diverse scientific domains, 
-                demonstrating its effectiveness as a universal learning paradigm.
-            </p>
-
-            <!-- Domain Highlight Cards -->
-            <div class="domain-highlights">
-                <div class="domain-card math">
-                    <span class="domain-icon">🔢</span>
-                    <div class="domain-title">Mathematics</div>
-                    <div class="domain-benchmark">AIME25 • GSM8k</div>
-                    <div class="metric-highlight">
-                        <div class="metric-row">
-                            <span class="metric-label">Peak Improvement</span>
-                            <span class="metric-value">40% → 63.3%</span>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-label">GPT-4 on GSM8k</span>
-                            <span class="metric-value">93.8% → 95.9%</span>
-                        </div>
-                        <span class="improvement-badge">+58.7% Relative Gain</span>
-                    </div>
-                </div>
-
-                <div class="domain-card chemistry">
-                    <span class="domain-icon">⚗️</span>
-                    <div class="domain-title">Chemistry</div>
-                    <div class="domain-benchmark">USPTO50k Retrosynthesis</div>
-                    <div class="metric-highlight">
-                        <div class="metric-row">
-                            <span class="metric-label">Best Model Gain</span>
-                            <span class="metric-value">20% → 30%</span>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-label">Gemini-2.5-Pro</span>
-                            <span class="metric-value">9% → 18%</span>
-                        </div>
-                        <span class="improvement-badge">+100% Relative Gain</span>
-                    </div>
-                </div>
-
-                <div class="domain-card biology">
-                    <span class="domain-icon">🧬</span>
-                    <div class="domain-title">Biology</div>
-                    <div class="domain-benchmark">ProteinGym Fitness</div>
-                    <div class="metric-highlight">
-                        <div class="metric-row">
-                            <span class="metric-label">Average Improvement</span>
-                            <span class="metric-value">+10.8 points</span>
-                        </div>
-                        <div class="metric-row">
-                            <span class="metric-label">Claude-Sonnet-4</span>
-                            <span class="metric-value">46.0 → 59.7</span>
-                        </div>
-                        <span class="improvement-badge">+0.10 Spearman ρ</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="results-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Benchmark</th>
-                            <th>Models</th>
-                            <th>LLM</th>
-                            <th>ICL</th>
-                            <th>ReAct</th>
-                            <th>FLEX</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Math Section -->
-                        <tr class="benchmark-header">
-                            <td colspan="6"><strong>Math</strong></td>
-                        </tr>
-                        <!-- AIME25 -->
-                        <tr>
-                            <td rowspan="2"><strong>AIME25</strong></td>
-                            <td class="model-name">Claude-Sonnet-4</td>
-                            <td>40.0</td>
-                            <td>30.0 <span class="improvement-negative">(-10.0)</span></td>
-                            <td>50.0 <span class="improvement-positive">(+10.0)</span></td>
-                            <td class="best-result">63.3 <span class="improvement-positive">(+23.3)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">DeepSeek-V3.1-Terminus</td>
-                            <td>56.7</td>
-                            <td>53.3 <span class="improvement-negative">(-3.3)</span></td>
-                            <td>60.0 <span class="improvement-positive">(+3.3)</span></td>
-                            <td class="best-result">66.6 <span class="improvement-positive">(+10.0)</span></td>
-                        </tr>
-                        <!-- GSM8k -->
-                        <tr>
-                            <td rowspan="4"><strong>GSM8k</strong></td>
-                            <td class="model-name">GPT-3.5</td>
-                            <td>80.8</td>
-                            <td>81.4 <span class="improvement-positive">(+0.6)</span></td>
-                            <td>78.5 <span class="improvement-negative">(-2.3)</span></td>
-                            <td class="best-result">83.3 <span class="improvement-positive">(+3.3)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">GPT-4</td>
-                            <td>93.8</td>
-                            <td>94.2 <span class="improvement-positive">(+0.4)</span></td>
-                            <td>94.0 <span class="improvement-positive">(+0.2)</span></td>
-                            <td class="best-result">95.9 <span class="improvement-positive">(+2.1)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">Llama-3.2-1B</td>
-                            <td>74.3</td>
-                            <td>75.8 <span class="improvement-positive">(+1.5)</span></td>
-                            <td>71.0 <span class="improvement-negative">(-3.3)</span></td>
-                            <td class="best-result">80.9 <span class="improvement-positive">(+6.6)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">Llama-3.2-3B</td>
-                            <td>78.4</td>
-                            <td>78.8 <span class="improvement-positive">(+0.4)</span></td>
-                            <td>74.5 <span class="improvement-negative">(-3.9)</span></td>
-                            <td class="best-result">81.1 <span class="improvement-positive">(+2.7)</span></td>
-                        </tr>
-
-                        <!-- Chemistry Section -->
-                        <tr class="benchmark-header">
-                            <td colspan="6"><strong>Chemistry</strong></td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3"><strong>USPTO50k</strong></td>
-                            <td class="model-name">GPT-5</td>
-                            <td>9.0</td>
-                            <td>14.0 <span class="improvement-positive">(+5.0)</span></td>
-                            <td>12.0 <span class="improvement-positive">(+3.0)</span></td>
-                            <td class="best-result">16.0 <span class="improvement-positive">(+7.0)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">Gemini-2.5-Pro</td>
-                            <td>9.0</td>
-                            <td>15.0 <span class="improvement-positive">(+6.0)</span></td>
-                            <td>12.0 <span class="improvement-positive">(+3.0)</span></td>
-                            <td class="best-result">18.0 <span class="improvement-positive">(+9.0)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">Claude-Sonnet-4.5</td>
-                            <td>20.0</td>
-                            <td>24.0 <span class="improvement-positive">(+4.0)</span></td>
-                            <td>23.0 <span class="improvement-positive">(+3.0)</span></td>
-                            <td class="best-result">30.0 <span class="improvement-positive">(+10.0)</span></td>
-                        </tr>
-
-                        <!-- Biology Section -->
-                        <tr class="benchmark-header">
-                            <td colspan="6"><strong>Biology</strong></td>
-                        </tr>
-                        <tr>
-                            <td rowspan="3"><strong>ProteinGym</strong></td>
-                            <td class="model-name">DeepSeek-V3.1-Terminus</td>
-                            <td>47.9</td>
-                            <td>48.9 <span class="improvement-positive">(+1.0)</span></td>
-                            <td>48.6 <span class="improvement-positive">(+0.7)</span></td>
-                            <td class="best-result">56.8 <span class="improvement-positive">(+8.9)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">GPT-OSS-120B</td>
-                            <td>47.7</td>
-                            <td>49.8 <span class="improvement-positive">(+2.1)</span></td>
-                            <td>51.5 <span class="improvement-positive">(+3.8)</span></td>
-                            <td class="best-result">57.3 <span class="improvement-positive">(+9.6)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-name">Claude-Sonnet-4</td>
-                            <td>46.0</td>
-                            <td>49.8 <span class="improvement-positive">(+3.8)</span></td>
-                            <td>50.2 <span class="improvement-positive">(+4.2)</span></td>
-                            <td class="best-result">59.7 <span class="improvement-positive">(+13.7)</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Key Insights Summary -->
-            <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid var(--primary-color);">
-                <h4 style="margin-top: 0; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 1.5rem;">💡</span>
-                    Key Takeaways
-                </h4>
-                <ul style="list-style: none; padding-left: 0; margin: 1rem 0 0 0;">
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
-                        <span style="color: #10b981; font-size: 1.2rem; line-height: 1.5;">✓</span>
-                        <span><strong>Sample Efficiency:</strong> FLEX learns from only 49-50 examples per benchmark, achieving substantial improvements without massive datasets</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
-                        <span style="color: #10b981; font-size: 1.2rem; line-height: 1.5;">✓</span>
-                        <span><strong>Universal Paradigm:</strong> Consistent gains across diverse domains (Math, Chemistry, Biology) demonstrate broad applicability</span>
-                    </li>
-                    <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
-                        <span style="color: #10b981; font-size: 1.2rem; line-height: 1.5;">✓</span>
-                        <span><strong>Parameter-Free Learning:</strong> All improvements achieved without gradient-based updates or model fine-tuning</span>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- The Scaling Law of Experience Section -->
-        <section id="scaling-law">
-            <h2>The Scaling Law of Experience</h2>
-            <p>
-                FLEX demonstrates <strong>predictable scaling behavior</strong>: agent performance improves systematically 
-                as the experience library grows, revealing three distinct scaling regimes.
-            </p>
-
-            <div class="image-container">
-                <img src="asset/fig-td.png" alt="Scaling Law - Training dynamics showing how performance scales with experience">
-                <p class="image-caption">
-                    Training dynamics on GSM8K across 5 epochs showing how performance scales with experience library size
-                </p>
-            </div>
-
-            <!-- Scaling Regimes Cards -->
-            <div class="scaling-regimes">
-                <div class="regime-card">
-                    <span class="regime-icon">📈</span>
-                    <div class="regime-title">Training Scaling</div>
-                    <div class="regime-description">Power-law relationship between library size and training accuracy</div>
-                    <div class="regime-metric">
-                        <span class="regime-value">81.2% → 94.2%</span>
-                        <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
-                            As library grows:<br>1,001 → 1,904 items
-                        </div>
-                    </div>
-                </div>
-
-                <div class="regime-card">
-                    <span class="regime-icon">🎯</span>
-                    <div class="regime-title">Generalization Scaling</div>
-                    <div class="regime-description">Consistent test accuracy improvement with reduced variance</div>
-                    <div class="regime-metric">
-                        <span class="regime-value">81.3% → 83.3%</span>
-                        <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
-                            Beats 80.8% baseline<br>Stable predictions
-                        </div>
-                    </div>
-                </div>
-
-                <div class="regime-card">
-                    <span class="regime-icon">🔄</span>
-                    <div class="regime-title">Experience Growth</div>
-                    <div class="regime-description">Logistic curve: rapid expansion then selective refinement</div>
-                    <div class="regime-metric">
-                        <span class="regime-value">+576 → +64</span>
-                        <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
-                            Epoch 1→2 vs 4→5<br>Intelligent coverage
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Key Insight -->
-            <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 1.5rem 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid #f59e0b;">
-                <h4 style="margin: 0 0 0.5rem 0; color: #92400e; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 1.3rem;">💡</span>
-                    A New Scaling Paradigm
-                </h4>
-                <p style="margin: 0; color: #78350f; line-height: 1.7;">
-                    Beyond traditional scaling (parameters, compute), FLEX introduces <strong>scaling with experience</strong> — 
-                    a principled framework for continuous improvement through knowledge accumulation, offering predictable 
-                    performance gains without parameter updates.
-                </p>
-            </div>
-        </section>
-
-        <!-- Inheritance of the Experience Library Section -->
-        <section id="inheritance">
-            <h2>Inheritance of the Experience Library</h2>
-            <p>
-                The experience library is <strong>portable and reusable</strong> — it can be seamlessly transferred 
-                across different agents, enabling two powerful effects that transcend traditional model boundaries.
-            </p>
-
-            <!-- Inheritance Effect Cards -->
-            <div class="inheritance-effects">
-                <div class="effect-card">
-                    <span class="effect-icon">📥</span>
-                    <div class="effect-title">
-                        Distillation Effect
-                        <span style="font-size: 0.8rem; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.2rem 0.6rem; border-radius: 12px;">Strong → Weak</span>
-                    </div>
-                    <div class="effect-description">
-                        Expertise from top-performing models can <strong>uplift weaker ones</strong> without individual fine-tuning. 
-                        One powerful agent's exploration benefits an entire fleet.
-                    </div>
-                    <div class="effect-examples">
-                        <div style="font-weight: 600; margin-bottom: 0.8rem; color: var(--text-color);">🔬 USPTO50k Example:</div>
-                        <div class="example-item">
-                            <span class="example-label">Claude-4.5 → Gemini-2.5-Pro</span>
-                            <span class="example-value">+11 points</span>
-                        </div>
-                        <div class="example-item">
-                            <span class="example-label">Cost-Effective Path</span>
-                            <span class="example-value" style="font-size: 0.9rem;">1 train → N deploy</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="effect-card">
-                    <span class="effect-icon">📤</span>
-                    <div class="effect-title">
-                        Generality Effect
-                        <span style="font-size: 0.8rem; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.2rem 0.6rem; border-radius: 12px;">Weak → Strong</span>
-                    </div>
-                    <div class="effect-description">
-                        Experience from weaker models provides <strong>substantial benefits to stronger ones</strong>. 
-                        Learned strategies are model-agnostic, capturing fundamental reasoning patterns.
-                    </div>
-                    <div class="effect-examples">
-                        <div style="font-weight: 600; margin-bottom: 0.8rem; color: var(--text-color);">🔢 AIME25 Example:</div>
-                        <div class="example-item">
-                            <span class="example-label">Claude-4 → DeepSeek-V3.1</span>
-                            <span class="example-value">+6.7 points</span>
-                        </div>
-                        <div class="example-item">
-                            <span class="example-label">Performance Match</span>
-                            <span class="example-value" style="font-size: 0.9rem;">= Self-trained</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Transfer Tables - Compact Version -->
-            <details style="margin-top: 2rem; background: #f9fafb; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
-                <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>📊</span> View Detailed Transfer Results
-                </summary>
-                <div style="margin-top: 1.5rem;">
-                    <div class="transfer-table">
-                <table>
-                    <thead>
-                        <tr class="dataset-header">
-                            <th colspan="5">AIME25</th>
-                        </tr>
-                        <tr>
-                            <th>Model</th>
-                            <th>ReAct</th>
-                            <th>+ Claude</th>
-                            <th>+ DeepSeek</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="model-row">Claude-Sonnet-4</td>
-                            <td>50.0</td>
-                            <td>63.3 <span class="improvement-positive">(+13.3)</span></td>
-                            <td>66.7 <span class="improvement-positive">(+16.7)</span></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="model-row">DeepSeek-V3.1-Terminus</td>
-                            <td>60.0</td>
-                            <td>66.7 <span class="improvement-positive">(+6.7)</span></td>
-                            <td>66.7 <span class="improvement-positive">(+6.7)</span></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="transfer-table">
-                <table>
-                    <thead>
-                        <tr class="dataset-header">
-                            <th colspan="5">USPTO50k</th>
-                        </tr>
-                        <tr>
-                            <th>Model</th>
-                            <th>ReAct</th>
-                            <th>+ GPT</th>
-                            <th>+ Gemini</th>
-                            <th>+ Claude</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="model-row">GPT-5</td>
-                            <td>12.0</td>
-                            <td>16.0 <span class="improvement-positive">(+4.0)</span></td>
-                            <td>18.0 <span class="improvement-positive">(+6.0)</span></td>
-                            <td>15.0 <span class="improvement-positive">(+3.0)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-row">Gemini-2.5-Pro</td>
-                            <td>12.0</td>
-                            <td>14.0 <span class="improvement-positive">(+2.0)</span></td>
-                            <td>18.0 <span class="improvement-positive">(+6.0)</span></td>
-                            <td>23.0 <span class="improvement-positive">(+11.0)</span></td>
-                        </tr>
-                        <tr>
-                            <td class="model-row">Claude-Sonnet-4.5</td>
-                            <td>23.0</td>
-                            <td>28.0 <span class="improvement-positive">(+5.0)</span></td>
-                            <td>30.0 <span class="improvement-positive">(+7.0)</span></td>
-                            <td>30.0 <span class="improvement-positive">(+7.0)</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="transfer-table">
-                <table>
-                    <thead>
-                        <tr class="dataset-header">
-                            <th colspan="4">ProteinGym</th>
-                        </tr>
-                        <tr>
-                            <th>Model</th>
-                            <th>ReAct</th>
-                            <th>+ Qwen</th>
-                            <th>+ DeepSeek</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="model-row">GPT-OSS</td>
-                            <td>51.5</td>
-                            <td>55.0 <span class="improvement-positive">(+3.5)</span></td>
-                            <td>56.6 <span class="improvement-positive">(+5.1)</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                </div>
-            </details>
-
-            <!-- Vision Statement -->
-            <div style="background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); padding: 1.5rem 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid #8b5cf6;">
-                <h4 style="margin: 0 0 0.5rem 0; color: #5b21b6; display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 1.3rem;">🌐</span>
-                    Towards Universal Experience Libraries
-                </h4>
-                <p style="margin: 0; color: #6b21a8; line-height: 1.7;">
-                    These inheritance properties open a path to creating <strong>universal experience libraries</strong> — 
-                    single, reusable knowledge modules that can enhance entire AI ecosystems without individual training, 
-                    enabling a collaborative intelligence paradigm.
-                </p>
-            </div>
-        </section>
-
-        <!-- Case Study Section -->
-        <section id="case-study">
-            <h2>Case Study</h2>
-            <p>
-                Explore how FLEX's experience library <strong>corrects critical failures</strong> across three scientific 
-                domains by injecting domain-specific knowledge and procedural guidance.
-            </p>
-
-            <!-- Domain Tabs -->
-            <div class="case-study-tabs">
-                <button class="tab-button active" onclick="switchTab('math')">
-                    <span class="tab-icon">🔢</span>
-                    <span>Mathematics</span>
-                </button>
-                <button class="tab-button" onclick="switchTab('chemistry')">
-                    <span class="tab-icon">⚗️</span>
-                    <span>Chemistry</span>
-                </button>
-                <button class="tab-button" onclick="switchTab('biology')">
-                    <span class="tab-icon">🧬</span>
-                    <span>Biology</span>
-                </button>
-            </div>
-
-            <!-- Mathematics Case -->
-            <div id="math-case" class="case-content active">
-                <div class="case-image">
-                    <img src="asset/aime_case.png" alt="Mathematics Case Study - AIME Problem Solving">
-                </div>
-                <div class="case-analysis">
-                    <h4>🔢 Mathematics: Geometric Constraint Reasoning</h4>
-                    <p>
-                        The problem-solving trajectories reveal <span class="case-highlight">fundamental reasoning gaps</span> 
-                        in baseline approaches. The naive LLM fails by <span class="case-key-point">decoupling geometric constraints</span>, 
-                        leading to infeasible side lengths. The ReAct agent, while more structured, drifts into 
-                        <span class="case-key-point">special-case assumptions</span> without verifying global consistency.
-                    </p>
-                    <p>
-                        FLEX transforms this process by <span class="case-highlight">injecting structured procedural knowledge</span>. 
-                        By retrieving a <span class="case-key-point">reusable algebraic template</span> and 
-                        <span class="case-key-point">critical feasibility checks</span>, it directly addresses core LLM 
-                        limitations of logical drift and constraint violation. The distilled experience transforms the 
-                        agent's process from heuristic-driven exploration into a <span class="case-highlight">deterministic 
-                        solve-verify loop</span>, enabling systematic discovery of correct parameters.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Chemistry Case -->
-            <div id="chemistry-case" class="case-content">
-                <div class="case-image">
-                    <img src="asset/retro_case.png" alt="Chemistry Case Study - Retrosynthesis Planning">
-                </div>
-                <div class="case-analysis">
-                    <h4>⚗️ Chemistry: Retrosynthesis Disconnection Strategy</h4>
-                    <p>
-                        The trajectories expose a <span class="case-highlight">critical gap in domain-specific reasoning</span>. 
-                        Both naive LLM and vanilla ReAct make the same fundamental error: despite correctly identifying the 
-                        <span class="case-key-point">mesylate group</span>, they misidentify the disconnection point by 
-                        prioritizing a plausible but incorrect <span class="case-key-point">N-alkylation pathway</span>.
-                    </p>
-                    <p>
-                        FLEX succeeds by leveraging its experience library to <span class="case-highlight">bridge this knowledge gap</span>. 
-                        It retrieves an <span class="case-key-point">explicit template</span> that overrides the flawed 
-                        heuristic and enforces the canonical <span class="case-key-point">O-S bond disconnection</span>. 
-                        The experience library functions as an <span class="case-highlight">external knowledge substrate</span>, 
-                        injecting proven procedural scaffolds and domain-specific constraints into the agent's workflow.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Biology Case -->
-            <div id="biology-case" class="case-content">
-                <div class="case-image">
-                    <img src="asset/protein_case.png" alt="Biology Case Study - Protein Fitness Prediction">
-                </div>
-                <div class="case-analysis">
-                    <h4>🧬 Biology: Protein Fitness Landscape Navigation</h4>
-                    <p>
-                        This case demonstrates how agents learn from a <span class="case-highlight">deliberately designed 
-                        experience library</span> — golden rules, warnings, and core know-how. Unlike math and retrosynthesis, 
-                        protein-fitness prediction rarely admits absolute right/wrong answers; instead, useful guidance must 
-                        be distilled from <span class="case-key-point">empirical trial trajectories</span> and 
-                        <span class="case-key-point">cross-validation signals</span>.
-                    </p>
-                    <p>
-                        The library captures those trajectories as <span class="case-highlight">reusable micro-strategies</span> 
-                        and <span class="case-highlight">failure patterns</span>, enabling the agent to adapt a generic 
-                        regression objective to the idiosyncrasies of specific proteins. By overlaying 
-                        <span class="case-key-point">proven procedural scaffolds</span> onto the frozen LLM's reasoning, 
-                        the experience library encourages more valuable and diverse explorations of the fitness landscape.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Discussion Section -->
-        <section id="discussion">
-            <h2>Discussion</h2>
-            <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.05rem; color: #4b5563;">
-                The aspiration to create intelligent agents that <strong>evolve through lived experience</strong> is a <strong>long-standing</strong> and 
-                <strong>central theme</strong> in artificial intelligence. This discussion connects our research to this enduring 
-                quest, reflecting on potential futures and historical context. We frame our contributions not as conclusions, 
-                but as a humble step in an ongoing, collective journey.
-            </p>
-
-            <div class="discussion-cards">
-                <!-- Card 1: Continuous Learning -->
-                <div class="discussion-card">
-                    <h4>🔄 Toward Continuous Learning</h4>
-                    
-                    <div class="discussion-section">
-                        <div class="section-label goal">🎯 Goal</div>
-                        <p>
-                            A central goal in AI is to enable agents to <strong>learn continuously from their interactions</strong>, 
-                            much like living organisms do. This pursuit hints at a future where AI systems are not static artifacts, 
-                            but dynamic partners capable of adapting in real time.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label history">📚 Historical Context</div>
-                        <p>
-                            For years, the research community has explored various avenues toward this goal, often seeking 
-                            learning paradigms that are more <strong>"forward-looking" than traditional back-propagation</strong>. 
-                            However, most approaches have been constrained to numerical optimization tasks.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label contribution">✨ Our Contribution</div>
-                        <p>
-                            The semantic capabilities of modern LLMs offer a new lens for this quest. It becomes possible to 
-                            explore learning not only as a numerical optimization task but as a <strong>process of reasoned 
-                            reflection</strong>. Our explorations suggest this is a worthwhile direction, raising the possibility 
-                            for a new generation of AI systems whose learning processes are <strong>inherently more auditable 
-                            and aligned with a lifelong learning model</strong>.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Collective Wisdom -->
-                <div class="discussion-card">
-                    <h4>🌐 Heading to a Collective Wisdom</h4>
-                    
-                    <div class="discussion-section">
-                        <div class="section-label goal">🎯 Goal</div>
-                        <p>
-                            Beyond individual capability, another grand challenge is fostering a form of <strong>collective 
-                            intelligence</strong>, mirroring how human progress is built upon shared knowledge. One can envision 
-                            a future where a global network of specialized agents collaborate, forming a collective scientific 
-                            mind to accelerate progress on humanity's greatest challenges.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label history">📚 Historical Context</div>
-                        <p>
-                            A key historical obstacle to this vision has been the <strong>absence of a robust medium to inherit 
-                            wisdom across distinct AI agents</strong>. Traditional approaches embedded knowledge within model 
-                            parameters, making transfer and collaboration difficult.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label contribution">✨ Our Contribution</div>
-                        <p>
-                            The concept of <strong>decoupling learned experience from an agent's internal parameters</strong> 
-                            represents a hopeful path forward. Our explorations suggest that distilled experience can indeed 
-                            serve as a <strong>viable medium for inheritance</strong>, adding a small contribution to the 
-                            larger effort of building a foundation upon which a more synergistic AI ecosystem might one day be built.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Card 3: Transparent Learning -->
-                <div class="discussion-card">
-                    <h4>🔍 Learning in a Transparent Way</h4>
-                    
-                    <div class="discussion-section">
-                        <div class="section-label goal">🎯 Goal</div>
-                        <p>
-                            Integral to the future of AI is the development of systems whose <strong>reasoning is transparent</strong>. 
-                            This points toward a future where human-AI collaboration is built on a foundation of shared understanding, 
-                            which is crucial for their integration into critical societal functions.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label history">📚 Historical Context</div>
-                        <p>
-                            The <strong>"black box" nature of many deep learning models</strong> has presented a persistent 
-                            barrier to this goal. Understanding why a model makes certain decisions has remained a fundamental 
-                            challenge in the field.
-                        </p>
-                    </div>
-
-                    <div class="discussion-section">
-                        <div class="section-label contribution">✨ Our Contribution</div>
-                        <p>
-                            An experience-driven learning paradigm inherently addresses this challenge. When an agent's growth 
-                            is chronicled as a series of <strong>explicit, human-readable experiences</strong>, its evolution 
-                            becomes an open book. This transparency provides a direct mechanism for <strong>meaningful 
-                            human-in-the-loop interaction</strong>, allowing experts to understand, guide, and even enrich 
-                            an agent's learning journey. It represents a step toward a more white-box model of AI development, 
-                            where the process of learning is as important as the final performance.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <p style="margin-top: 3rem; padding: 1.5rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
-                       border-radius: 12px; border-left: 4px solid #0284c7; font-style: italic; text-align: center; 
-                       color: #0c4a6e; line-height: 1.8;">
-                In conclusion, the ideas explored here are offered as a contribution to an ongoing conversation. It is 
-                our sincere hope that this work serves as one humble effort for the field, contributing to a future where 
-                AI evolves as a more dynamic, collaborative, and transparent partner in the human endeavor.
-            </p>
-        </section>
-
-        <!-- Call to Action -->
-        <div class="cta">
-            <div class="cta-content">
-                <span class="cta-emoji">🚀</span>
-                <h2>Join the FLEX Community</h2>
-                <p>Explore the future of AI learning through experience accumulation</p>
-                
-                <div class="cta-buttons">
-                    <a href="https://github.com/GenSI-THUAIR/FLEX" class="btn btn-primary" target="_blank">
-                        <span>⭐ Star on GitHub</span>
-                        <span class="btn-icon">→</span>
-                    </a>
-                </div>
-
-                <div class="cta-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">3</span>
-                        <span class="stat-label">Domains</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Max Improvement</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">∞</span>
-                        <span class="stat-label">Possibilities</span>
-                    </div>
-                </div>
+            <div class="hero-cta">
+                <a href="#introduction" class="btn btn-primary">
+                    <span>Explore FLEX</span>
+                    <span class="btn-icon">→</span>
+                </a>
+                <a href="#series" class="btn btn-secondary">
+                    <span>Research Series</span>
+                    <span class="btn-icon">📚</span>
+                </a>
+                <a href="https://github.com/GenSI-THUAIR/FLEX" class="btn btn-secondary" target="_blank" rel="noopener">
+                    <span>GitHub</span>
+                    <span class="btn-icon">⭐</span>
+                </a>
             </div>
         </div>
+    </section>
 
-        <!-- Citation Section -->
-        <section id="citation">
-            <h2>Citation</h2>
-            <div style="background-color: #f3f4f6; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-top: 1rem;">
-                <p style="font-family: 'Courier New', monospace; color: var(--text-color); margin: 0;">
-                    If you use FLEX in your research, please cite our paper.<br>
-                    Citation information will be added upon publication.
+    <!-- Navigation -->
+    <nav role="navigation" aria-label="Main navigation">
+        <a href="#news">News</a>
+        <a href="#introduction">Introduction</a>
+        <a href="#key-contributions">Contributions</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#main-results">Results</a>
+        <a href="#scaling-law">Scaling Law</a>
+        <a href="#inheritance">Inheritance</a>
+        <a href="#case-study">Case Studies</a>
+        <a href="#discussion">Discussion</a>
+        <a href="#series">Series</a>
+        <a href="#team">Team</a>
+        <a href="#citation">Citation</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <div class="container">
+            <!-- News Section -->
+            <section id="news" class="news-section">
+                <div class="news-header">
+                    <h2>
+                        <span class="news-icon">📢</span>
+                        Latest News
+                    </h2>
+                </div>
+                <div class="news-container">
+                    <div class="news-item">
+                        <span class="news-badge">NEW</span>
+                        <span class="news-date">November 2025</span>
+                        <div class="news-content">
+                            <strong>🎉 FLEX is Now Available!</strong> We are excited to announce the official release of FLEX (Forward Learning from Experience), 
+                            a revolutionary learning paradigm that enables AI agents to evolve through experience accumulation rather than gradient-based training. 
+                            Explore our code on <a href="https://github.com/GenSI-THUAIR/FLEX" target="_blank" rel="noopener">GitHub</a> and join the future of inheritable intelligence!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Introduction Section -->
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>
+                    Welcome to <strong>F</strong>orward <strong>L</strong>earning from <strong>Ex</strong>perience (FLEX), 
+                    a novel learning paradigm that shifts learning from modifying model parameters to constructing and 
+                    leveraging an evolvable experience library.
                 </p>
+                <p>
+                    By continuously expanding and refining this library, agents can progressively acquire deeper insights 
+                    and knowledge, enhancing their cognitive capabilities with accumulated experiences.
+                </p>
+
+                <div class="image-container">
+                    <img src="asset/front_pic.png" alt="FLEX Overview - Visual representation of the Forward Learning paradigm" loading="lazy">
+                    <p class="image-caption">Overview of the FLEX paradigm showing the interaction between agents and the experience library</p>
+                </div>
+
+                <div class="results">
+                    <h3>🎯 Experimental Results</h3>
+                    <p>We conduct extensive experiments across diverse challenging scientific domains:</p>
+                    <ul>
+                        <li><strong>AIME25</strong> (Olympiad-level mathematics): Improvement from <span class="highlight">40% to 63.3%</span></li>
+                        <li><strong>USPTO50k</strong> (Chemical retrosynthesis): Improvement from <span class="highlight">20% to 30%</span></li>
+                        <li><strong>ProteinGym</strong> (Protein fitness prediction): Improvement from <span class="highlight">46% to 60%</span></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Key Contributions Section -->
+            <section id="key-contributions">
+                <h2>Key Contributions</h2>
+                <div class="contributions">
+                    <div class="contribution-card">
+                        <div class="contribution-number">1</div>
+                        <p>
+                            We propose <strong>FLEX</strong>, a new learning paradigm for the agentic era. It redefines 
+                            learning as a forward exploration and experience distillation process, enabling LLM agents to 
+                            evolve dynamically without gradient-based tuning.
+                        </p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-number">2</div>
+                        <p>
+                            We provide a comprehensive framework for FLEX, including a unified mathematical formulation 
+                            with theoretical justifications, a practical instantiation with concrete mechanisms, and an 
+                            empirical demonstration of its effectiveness on diverse scientific benchmarks.
+                        </p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-number">3</div>
+                        <p>
+                            We discover and empirically validate a <strong>scaling law</strong> for the experience library, 
+                            showing that agent performance scales predictably with accumulated knowledge and revealing a 
+                            path towards a collaborative experience ecosystem.
+                        </p>
+                    </div>
+                    <div class="contribution-card">
+                        <div class="contribution-number">4</div>
+                        <p>
+                            We introduce and demonstrate the principle of <strong>intelligence inheritance</strong>, where 
+                            distilled experience can be transferred between agents in a plug-and-play manner, enabling 
+                            instant knowledge assimilation and bypassing redundant learning.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Methodology Section -->
+            <section id="methodology">
+                <h2>Methodology</h2>
+                <p>
+                    FLEX introduces a fundamentally different approach to machine learning by focusing on 
+                    <strong>experience accumulation</strong> rather than parameter optimization.
+                </p>
+                
+                <div class="image-container">
+                    <img src="asset/method_pic.png" alt="FLEX Methodology - Comparison between gradient-based learning and FLEX" loading="lazy">
+                    <p class="image-caption">
+                        Comparison between gradient-based learning and FLEX, highlighting the interaction among 
+                        the actor <code>π</code>, updater <code>μ</code>, and experience library <code>ℰ</code>
+                    </p>
+                </div>
+
+                <p>The system comprises three main components:</p>
+                <ul style="list-style-position: inside; padding-left: 1rem; margin-top: 1rem;">
+                    <li style="margin-bottom: 0.5rem;"><code>π</code> (Actor): Executes tasks using available experience</li>
+                    <li style="margin-bottom: 0.5rem;"><code>μ</code> (Updater): Refines and expands the experience library</li>
+                    <li style="margin-bottom: 0.5rem;"><code>ℰ</code> (Experience Library): Stores and organizes learned knowledge</li>
+                </ul>
+            </section>
+
+            <!-- Main Results Section -->
+            <section id="main-results">
+                <h2>Main Results</h2>
+                <p>
+                    FLEX achieves <strong>consistent and significant improvements</strong> across diverse scientific domains, 
+                    demonstrating its effectiveness as a universal learning paradigm.
+                </p>
+
+                <!-- Domain Highlight Cards -->
+                <div class="domain-highlights">
+                    <div class="domain-card math">
+                        <span class="domain-icon">🔢</span>
+                        <div class="domain-title">Mathematics</div>
+                        <div class="domain-benchmark">AIME25 • GSM8k</div>
+                        <div class="metric-highlight">
+                            <div class="metric-row">
+                                <span class="metric-label">Peak Improvement</span>
+                                <span class="metric-value">40% → 63.3%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">GPT-4 on GSM8k</span>
+                                <span class="metric-value">93.8% → 95.9%</span>
+                            </div>
+                            <span class="improvement-badge">+58.7% Relative Gain</span>
+                        </div>
+                    </div>
+
+                    <div class="domain-card chemistry">
+                        <span class="domain-icon">⚗️</span>
+                        <div class="domain-title">Chemistry</div>
+                        <div class="domain-benchmark">USPTO50k Retrosynthesis</div>
+                        <div class="metric-highlight">
+                            <div class="metric-row">
+                                <span class="metric-label">Best Model Gain</span>
+                                <span class="metric-value">20% → 30%</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Gemini-2.5-Pro</span>
+                                <span class="metric-value">9% → 18%</span>
+                            </div>
+                            <span class="improvement-badge">+100% Relative Gain</span>
+                        </div>
+                    </div>
+
+                    <div class="domain-card biology">
+                        <span class="domain-icon">🧬</span>
+                        <div class="domain-title">Biology</div>
+                        <div class="domain-benchmark">ProteinGym Fitness</div>
+                        <div class="metric-highlight">
+                            <div class="metric-row">
+                                <span class="metric-label">Average Improvement</span>
+                                <span class="metric-value">+10.8 points</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-label">Claude-Sonnet-4</span>
+                                <span class="metric-value">46.0 → 59.7</span>
+                            </div>
+                            <span class="improvement-badge">+0.10 Spearman ρ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toggle Button for Detailed Table -->
+                <div class="results-table-container">
+                    <button class="toggle-table-btn" onclick="toggleResultsTable()">
+                        <span id="toggle-text">📊 Show Detailed Results Table</span>
+                    </button>
+
+                    <!-- Detailed Results Table (Hidden by default) -->
+                    <div class="results-table" id="results-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Benchmark</th>
+                                    <th>Models</th>
+                                    <th>LLM</th>
+                                    <th>ICL</th>
+                                    <th>ReAct</th>
+                                    <th>FLEX</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Math Section -->
+                                <tr class="benchmark-header">
+                                    <td colspan="6"><strong>Math</strong></td>
+                                </tr>
+                                <!-- AIME25 -->
+                                <tr>
+                                    <td rowspan="2"><strong>AIME25</strong></td>
+                                    <td class="model-name">Claude-Sonnet-4</td>
+                                    <td>40.0</td>
+                                    <td>30.0 <span class="improvement-negative">(-10.0)</span></td>
+                                    <td>50.0 <span class="improvement-positive">(+10.0)</span></td>
+                                    <td class="best-result">63.3 <span class="improvement-positive">(+23.3)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">DeepSeek-V3.1-Terminus</td>
+                                    <td>56.7</td>
+                                    <td>53.3 <span class="improvement-negative">(-3.3)</span></td>
+                                    <td>60.0 <span class="improvement-positive">(+3.3)</span></td>
+                                    <td class="best-result">66.6 <span class="improvement-positive">(+10.0)</span></td>
+                                </tr>
+                                <!-- GSM8k -->
+                                <tr>
+                                    <td rowspan="4"><strong>GSM8k</strong></td>
+                                    <td class="model-name">GPT-3.5</td>
+                                    <td>80.8</td>
+                                    <td>81.4 <span class="improvement-positive">(+0.6)</span></td>
+                                    <td>78.5 <span class="improvement-negative">(-2.3)</span></td>
+                                    <td class="best-result">83.3 <span class="improvement-positive">(+3.3)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">GPT-4</td>
+                                    <td>93.8</td>
+                                    <td>94.2 <span class="improvement-positive">(+0.4)</span></td>
+                                    <td>94.0 <span class="improvement-positive">(+0.2)</span></td>
+                                    <td class="best-result">95.9 <span class="improvement-positive">(+2.1)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">Llama-3.2-1B</td>
+                                    <td>74.3</td>
+                                    <td>75.8 <span class="improvement-positive">(+1.5)</span></td>
+                                    <td>71.0 <span class="improvement-negative">(-3.3)</span></td>
+                                    <td class="best-result">80.9 <span class="improvement-positive">(+6.6)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">Llama-3.2-3B</td>
+                                    <td>78.4</td>
+                                    <td>78.8 <span class="improvement-positive">(+0.4)</span></td>
+                                    <td>74.5 <span class="improvement-negative">(-3.9)</span></td>
+                                    <td class="best-result">81.1 <span class="improvement-positive">(+2.7)</span></td>
+                                </tr>
+
+                                <!-- Chemistry Section -->
+                                <tr class="benchmark-header">
+                                    <td colspan="6"><strong>Chemistry</strong></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3"><strong>USPTO50k</strong></td>
+                                    <td class="model-name">GPT-5</td>
+                                    <td>9.0</td>
+                                    <td>14.0 <span class="improvement-positive">(+5.0)</span></td>
+                                    <td>12.0 <span class="improvement-positive">(+3.0)</span></td>
+                                    <td class="best-result">16.0 <span class="improvement-positive">(+7.0)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">Gemini-2.5-Pro</td>
+                                    <td>9.0</td>
+                                    <td>15.0 <span class="improvement-positive">(+6.0)</span></td>
+                                    <td>12.0 <span class="improvement-positive">(+3.0)</span></td>
+                                    <td class="best-result">18.0 <span class="improvement-positive">(+9.0)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">Claude-Sonnet-4.5</td>
+                                    <td>20.0</td>
+                                    <td>24.0 <span class="improvement-positive">(+4.0)</span></td>
+                                    <td>23.0 <span class="improvement-positive">(+3.0)</span></td>
+                                    <td class="best-result">30.0 <span class="improvement-positive">(+10.0)</span></td>
+                                </tr>
+
+                                <!-- Biology Section -->
+                                <tr class="benchmark-header">
+                                    <td colspan="6"><strong>Biology</strong></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3"><strong>ProteinGym</strong></td>
+                                    <td class="model-name">DeepSeek-V3.1-Terminus</td>
+                                    <td>47.9</td>
+                                    <td>48.9 <span class="improvement-positive">(+1.0)</span></td>
+                                    <td>48.6 <span class="improvement-positive">(+0.7)</span></td>
+                                    <td class="best-result">56.8 <span class="improvement-positive">(+8.9)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">GPT-OSS-120B</td>
+                                    <td>47.7</td>
+                                    <td>49.8 <span class="improvement-positive">(+2.1)</span></td>
+                                    <td>51.5 <span class="improvement-positive">(+3.8)</span></td>
+                                    <td class="best-result">57.3 <span class="improvement-positive">(+9.6)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="model-name">Claude-Sonnet-4</td>
+                                    <td>46.0</td>
+                                    <td>49.8 <span class="improvement-positive">(+3.8)</span></td>
+                                    <td>50.2 <span class="improvement-positive">(+4.2)</span></td>
+                                    <td class="best-result">59.7 <span class="improvement-positive">(+13.7)</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Key Insights Summary -->
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid var(--primary-color);">
+                    <h4 style="margin-top: 0; color: var(--primary-color); display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.5rem;">💡</span>
+                        Key Takeaways
+                    </h4>
+                    <ul style="list-style: none; padding-left: 0; margin: 1rem 0 0 0;">
+                        <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
+                            <span style="color: #10b981; font-size: 1.2rem;">✓</span>
+                            <span><strong>Universal Effectiveness:</strong> FLEX consistently improves performance across mathematics, chemistry, and biology</span>
+                        </li>
+                        <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
+                            <span style="color: #10b981; font-size: 1.2rem;">✓</span>
+                            <span><strong>Model Agnostic:</strong> Benefits small models (Llama-3.2-1B) and large models (GPT-4, Claude) alike</span>
+                        </li>
+                        <li style="padding: 0.5rem 0; display: flex; align-items: start; gap: 0.5rem;">
+                            <span style="color: #10b981; font-size: 1.2rem;">✓</span>
+                            <span><strong>Practical Impact:</strong> Up to 100% relative improvement on challenging benchmarks</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- The Scaling Law of Experience Section -->
+            <section id="scaling-law">
+                <h2>The Scaling Law of Experience</h2>
+                <p>
+                    FLEX demonstrates <strong>predictable scaling behavior</strong>: agent performance improves systematically 
+                    as the experience library grows, revealing three distinct scaling regimes.
+                </p>
+
+                <div class="image-container">
+                    <img src="asset/fig-td.png" alt="Scaling Law - Training dynamics showing how performance scales with experience" loading="lazy">
+                    <p class="image-caption">
+                        Training dynamics on GSM8K across 5 epochs showing how performance scales with experience library size
+                    </p>
+                </div>
+
+                <!-- Scaling Regimes Cards -->
+                <div class="scaling-regimes">
+                    <div class="regime-card">
+                        <span class="regime-icon">📈</span>
+                        <div class="regime-title">Training Scaling</div>
+                        <div class="regime-description">Power-law relationship between library size and training accuracy</div>
+                        <div class="regime-metric">
+                            <span class="regime-value">81.2% → 94.2%</span>
+                            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
+                                As library grows:<br>1,001 → 1,904 items
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="regime-card">
+                        <span class="regime-icon">🎯</span>
+                        <div class="regime-title">Generalization Scaling</div>
+                        <div class="regime-description">Consistent test accuracy improvement with reduced variance</div>
+                        <div class="regime-metric">
+                            <span class="regime-value">81.3% → 83.3%</span>
+                            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
+                                Beats 80.8% baseline<br>Stable predictions
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="regime-card">
+                        <span class="regime-icon">🔄</span>
+                        <div class="regime-title">Experience Growth</div>
+                        <div class="regime-description">Logistic curve: rapid expansion then selective refinement</div>
+                        <div class="regime-metric">
+                            <span class="regime-value">+576 → +64</span>
+                            <div style="font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem;">
+                                Epoch 1→2 vs 4→5<br>Intelligent coverage
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insight -->
+                <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 1.5rem 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid #f59e0b;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #92400e; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.3rem;">💡</span>
+                        A New Scaling Paradigm
+                    </h4>
+                    <p style="margin: 0; color: #78350f; line-height: 1.7;">
+                        Beyond traditional scaling (parameters, compute), FLEX introduces <strong>scaling with experience</strong> — 
+                        a principled framework for continuous improvement through knowledge accumulation, offering predictable 
+                        performance gains without parameter updates.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Inheritance of the Experience Library Section -->
+            <section id="inheritance">
+                <h2>Inheritance of the Experience Library</h2>
+                <p>
+                    The experience library is <strong>portable and reusable</strong> — it can be seamlessly transferred 
+                    across different agents, enabling two powerful effects that transcend traditional model boundaries.
+                </p>
+
+                <!-- Inheritance Effect Cards -->
+                <div class="inheritance-effects">
+                    <div class="effect-card">
+                        <span class="effect-icon">📥</span>
+                        <div class="effect-title">
+                            Distillation Effect
+                            <span style="font-size: 0.8rem; background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; padding: 0.2rem 0.6rem; border-radius: 12px;">Strong → Weak</span>
+                        </div>
+                        <div class="effect-description">
+                            Expertise from top-performing models can <strong>uplift weaker ones</strong> without individual fine-tuning. 
+                            One powerful agent's exploration benefits an entire fleet.
+                        </div>
+                        <div class="effect-examples">
+                            <div style="font-weight: 600; margin-bottom: 0.8rem; color: var(--text-color);">🔬 USPTO50k Example:</div>
+                            <div class="example-item">
+                                <span class="example-label">Claude-4.5 → Gemini-2.5-Pro</span>
+                                <span class="example-value">+11 points</span>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-label">Cost-Effective Path</span>
+                                <span class="example-value" style="font-size: 0.9rem;">1 train → N deploy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="effect-card">
+                        <span class="effect-icon">📤</span>
+                        <div class="effect-title">
+                            Generality Effect
+                            <span style="font-size: 0.8rem; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.2rem 0.6rem; border-radius: 12px;">Weak → Strong</span>
+                        </div>
+                        <div class="effect-description">
+                            Experience from weaker models provides <strong>substantial benefits to stronger ones</strong>. 
+                            Learned strategies are model-agnostic, capturing fundamental reasoning patterns.
+                        </div>
+                        <div class="effect-examples">
+                            <div style="font-weight: 600; margin-bottom: 0.8rem; color: var(--text-color);">🔢 AIME25 Example:</div>
+                            <div class="example-item">
+                                <span class="example-label">Claude-4 → DeepSeek-V3.1</span>
+                                <span class="example-value">+6.7 points</span>
+                            </div>
+                            <div class="example-item">
+                                <span class="example-label">Performance Match</span>
+                                <span class="example-value" style="font-size: 0.9rem;">= Self-trained</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transfer Tables - Compact Version -->
+                <details style="margin-top: 2rem; background: #f9fafb; padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color);">
+                    <summary style="cursor: pointer; font-weight: 600; color: var(--primary-color); font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;">
+                        <span>📊</span> View Detailed Transfer Results
+                    </summary>
+                    <div style="margin-top: 1.5rem;">
+                        <div class="transfer-table">
+                            <table>
+                                <thead>
+                                    <tr class="dataset-header">
+                                        <th colspan="5">AIME25</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>ReAct</th>
+                                        <th>+ Claude</th>
+                                        <th>+ DeepSeek</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="model-row">Claude-Sonnet-4</td>
+                                        <td>50.0</td>
+                                        <td>63.3 <span class="improvement-positive">(+13.3)</span></td>
+                                        <td>66.7 <span class="improvement-positive">(+16.7)</span></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="model-row">DeepSeek-V3.1-Terminus</td>
+                                        <td>60.0</td>
+                                        <td>66.7 <span class="improvement-positive">(+6.7)</span></td>
+                                        <td>66.7 <span class="improvement-positive">(+6.7)</span></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="transfer-table">
+                            <table>
+                                <thead>
+                                    <tr class="dataset-header">
+                                        <th colspan="5">USPTO50k</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>ReAct</th>
+                                        <th>+ GPT</th>
+                                        <th>+ Gemini</th>
+                                        <th>+ Claude</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="model-row">GPT-5</td>
+                                        <td>12.0</td>
+                                        <td>16.0 <span class="improvement-positive">(+4.0)</span></td>
+                                        <td>18.0 <span class="improvement-positive">(+6.0)</span></td>
+                                        <td>15.0 <span class="improvement-positive">(+3.0)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="model-row">Gemini-2.5-Pro</td>
+                                        <td>12.0</td>
+                                        <td>14.0 <span class="improvement-positive">(+2.0)</span></td>
+                                        <td>18.0 <span class="improvement-positive">(+6.0)</span></td>
+                                        <td>23.0 <span class="improvement-positive">(+11.0)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="model-row">Claude-Sonnet-4.5</td>
+                                        <td>23.0</td>
+                                        <td>28.0 <span class="improvement-positive">(+5.0)</span></td>
+                                        <td>30.0 <span class="improvement-positive">(+7.0)</span></td>
+                                        <td>30.0 <span class="improvement-positive">(+7.0)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="transfer-table">
+                            <table>
+                                <thead>
+                                    <tr class="dataset-header">
+                                        <th colspan="4">ProteinGym</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>ReAct</th>
+                                        <th>+ Qwen</th>
+                                        <th>+ DeepSeek</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="model-row">GPT-OSS</td>
+                                        <td>51.5</td>
+                                        <td>55.0 <span class="improvement-positive">(+3.5)</span></td>
+                                        <td>56.6 <span class="improvement-positive">(+5.1)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- Vision Statement -->
+                <div style="background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); padding: 1.5rem 2rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid #8b5cf6;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #5b21b6; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 1.3rem;">🌐</span>
+                        Towards Universal Experience Libraries
+                    </h4>
+                    <p style="margin: 0; color: #6b21a8; line-height: 1.7;">
+                        These inheritance properties open a path to creating <strong>universal experience libraries</strong> — 
+                        single, reusable knowledge modules that can enhance entire AI ecosystems without individual training, 
+                        enabling a collaborative intelligence paradigm.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Case Study Section -->
+            <section id="case-study">
+                <h2>Case Study</h2>
+                <p>
+                    Explore how FLEX's experience library <strong>corrects critical failures</strong> across three scientific 
+                    domains by injecting domain-specific knowledge and procedural guidance.
+                </p>
+
+                <!-- Domain Tabs -->
+                <div class="case-study-tabs">
+                    <button class="tab-button active" onclick="switchTab('math')">
+                        <span class="tab-icon">🔢</span>
+                        <span>Mathematics</span>
+                    </button>
+                    <button class="tab-button" onclick="switchTab('chemistry')">
+                        <span class="tab-icon">⚗️</span>
+                        <span>Chemistry</span>
+                    </button>
+                    <button class="tab-button" onclick="switchTab('biology')">
+                        <span class="tab-icon">🧬</span>
+                        <span>Biology</span>
+                    </button>
+                </div>
+
+                <!-- Mathematics Case -->
+                <div id="math-case" class="case-content active">
+                    <div class="case-image">
+                        <img src="asset/aime_case.png" alt="Mathematics Case Study - AIME Problem Solving">
+                    </div>
+                    <div class="case-analysis">
+                        <h4>🔢 Mathematics: Geometric Constraint Reasoning</h4>
+                        <p>
+                            The problem-solving trajectories reveal <span class="case-highlight">fundamental reasoning gaps</span> 
+                            in baseline approaches. The naive LLM fails by <span class="case-key-point">decoupling geometric constraints</span>, 
+                            leading to infeasible side lengths. The ReAct agent, while more structured, drifts into 
+                            <span class="case-key-point">special-case assumptions</span> without verifying global consistency.
+                        </p>
+                        <p>
+                            FLEX transforms this process by <span class="case-highlight">injecting structured procedural knowledge</span>. 
+                            By retrieving a <span class="case-key-point">reusable algebraic template</span> and 
+                            <span class="case-key-point">critical feasibility checks</span>, it directly addresses core LLM 
+                            limitations of logical drift and constraint violation. The distilled experience transforms the 
+                            agent's process from heuristic-driven exploration into a <span class="case-highlight">deterministic 
+                            solve-verify loop</span>, enabling systematic discovery of correct parameters.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Chemistry Case -->
+                <div id="chemistry-case" class="case-content">
+                    <div class="case-image">
+                        <img src="asset/retro_case.png" alt="Chemistry Case Study - Retrosynthesis Planning">
+                    </div>
+                    <div class="case-analysis">
+                        <h4>⚗️ Chemistry: Retrosynthesis Disconnection Strategy</h4>
+                        <p>
+                            The trajectories expose a <span class="case-highlight">critical gap in domain-specific reasoning</span>. 
+                            Both naive LLM and vanilla ReAct make the same fundamental error: despite correctly identifying the 
+                            <span class="case-key-point">mesylate group</span>, they misidentify the disconnection point by 
+                            prioritizing a plausible but incorrect <span class="case-key-point">N-alkylation pathway</span>.
+                        </p>
+                        <p>
+                            FLEX succeeds by leveraging its experience library to <span class="case-highlight">bridge this knowledge gap</span>. 
+                            It retrieves an <span class="case-key-point">explicit template</span> that overrides the flawed 
+                            heuristic and enforces the canonical <span class="case-key-point">O-S bond disconnection</span>. 
+                            The experience library functions as an <span class="case-highlight">external knowledge substrate</span>, 
+                            injecting proven procedural scaffolds and domain-specific constraints into the agent's workflow.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Biology Case -->
+                <div id="biology-case" class="case-content">
+                    <div class="case-image">
+                        <img src="asset/protein_case.png" alt="Biology Case Study - Protein Fitness Prediction">
+                    </div>
+                    <div class="case-analysis">
+                        <h4>🧬 Biology: Protein Fitness Landscape Navigation</h4>
+                        <p>
+                            This case demonstrates how agents learn from a <span class="case-highlight">deliberately designed 
+                            experience library</span> — golden rules, warnings, and core know-how. Unlike math and retrosynthesis, 
+                            protein-fitness prediction rarely admits absolute right/wrong answers; instead, useful guidance must 
+                            be distilled from <span class="case-key-point">empirical trial trajectories</span> and 
+                            <span class="case-key-point">cross-validation signals</span>.
+                        </p>
+                        <p>
+                            The library captures those trajectories as <span class="case-highlight">reusable micro-strategies</span> 
+                            and <span class="case-highlight">failure patterns</span>, enabling the agent to adapt a generic 
+                            regression objective to the idiosyncrasies of specific proteins. By overlaying 
+                            <span class="case-key-point">proven procedural scaffolds</span> onto the frozen LLM's reasoning, 
+                            the experience library encourages more valuable and diverse explorations of the fitness landscape.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discussion Section -->
+            <section id="discussion">
+                <h2>Discussion</h2>
+                <p style="text-align: center; max-width: 900px; margin: 0 auto 3rem; font-size: 1.05rem; color: #4b5563;">
+                    The aspiration to create intelligent agents that <strong>evolve through lived experience</strong> is a <strong>long-standing</strong> and 
+                    <strong>central theme</strong> in artificial intelligence. This discussion connects our research to this enduring 
+                    quest, reflecting on potential futures and historical context. We frame our contributions not as conclusions, 
+                    but as a humble step in an ongoing, collective journey.
+                </p>
+
+                <div class="discussion-cards">
+                    <!-- Card 1: Continuous Learning -->
+                    <div class="discussion-card">
+                        <h4>🔄 Toward Continuous Learning</h4>
+                        
+                        <div class="discussion-section">
+                            <div class="section-label goal">🎯 Goal</div>
+                            <p>
+                                A central goal in AI is to enable agents to <strong>learn continuously from their interactions</strong>, 
+                                much like living organisms do. This pursuit hints at a future where AI systems are not static artifacts, 
+                                but dynamic partners capable of adapting in real time.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label history">� Historical Context</div>
+                            <p>
+                                For years, the research community has explored various avenues toward this goal, often seeking 
+                                learning paradigms that are more <strong>"forward-looking" than traditional back-propagation</strong>. 
+                                However, most approaches have been constrained to numerical optimization tasks.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label contribution">✨ Our Contribution</div>
+                            <p>
+                                The semantic capabilities of modern LLMs offer a new lens for this quest. It becomes possible to 
+                                explore learning not only as a numerical optimization task but as a <strong>process of reasoned 
+                                reflection</strong>. Our explorations suggest this is a worthwhile direction, raising the possibility 
+                                for a new generation of AI systems whose learning processes are <strong>inherently more auditable 
+                                and aligned with a lifelong learning model</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Collective Wisdom -->
+                    <div class="discussion-card">
+                        <h4>🌐 Heading to a Collective Wisdom</h4>
+                        
+                        <div class="discussion-section">
+                            <div class="section-label goal">🎯 Goal</div>
+                            <p>
+                                Beyond individual capability, another grand challenge is fostering a form of <strong>collective 
+                                intelligence</strong>, mirroring how human progress is built upon shared knowledge. One can envision 
+                                a future where a global network of specialized agents collaborate, forming a collective scientific 
+                                mind to accelerate progress on humanity's greatest challenges.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label history">📚 Historical Context</div>
+                            <p>
+                                A key historical obstacle to this vision has been the <strong>absence of a robust medium to inherit 
+                                wisdom across distinct AI agents</strong>. Traditional approaches embedded knowledge within model 
+                                parameters, making transfer and collaboration difficult.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label contribution">✨ Our Contribution</div>
+                            <p>
+                                The concept of <strong>decoupling learned experience from an agent's internal parameters</strong> 
+                                represents a hopeful path forward. Our explorations suggest that distilled experience can indeed 
+                                serve as a <strong>viable medium for inheritance</strong>, adding a small contribution to the 
+                                larger effort of building a foundation upon which a more synergistic AI ecosystem might one day be built.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Transparent Learning -->
+                    <div class="discussion-card">
+                        <h4>🔍 Learning in a Transparent Way</h4>
+                        
+                        <div class="discussion-section">
+                            <div class="section-label goal">🎯 Goal</div>
+                            <p>
+                                Integral to the future of AI is the development of systems whose <strong>reasoning is transparent</strong>. 
+                                This points toward a future where human-AI collaboration is built on a foundation of shared understanding, 
+                                which is crucial for their integration into critical societal functions.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label history">📚 Historical Context</div>
+                            <p>
+                                The <strong>"black box" nature of many deep learning models</strong> has presented a persistent 
+                                barrier to this goal. Understanding why a model makes certain decisions has remained a fundamental 
+                                challenge in the field.
+                            </p>
+                        </div>
+
+                        <div class="discussion-section">
+                            <div class="section-label contribution">✨ Our Contribution</div>
+                            <p>
+                                An experience-driven learning paradigm inherently addresses this challenge. When an agent's growth 
+                                is chronicled as a series of <strong>explicit, human-readable experiences</strong>, its evolution 
+                                becomes an open book. This transparency provides a direct mechanism for <strong>meaningful 
+                                human-in-the-loop interaction</strong>, allowing experts to understand, guide, and even enrich 
+                                an agent's learning journey. It represents a step toward a more white-box model of AI development, 
+                                where the process of learning is as important as the final performance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <p style="margin-top: 3rem; padding: 1.5rem; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); 
+                           border-radius: 12px; border-left: 4px solid #0284c7; font-style: italic; text-align: center; 
+                           color: #0c4a6e; line-height: 1.8;">
+                    In conclusion, the ideas explored here are offered as a contribution to an ongoing conversation. It is 
+                    our sincere hope that this work serves as one humble effort for the field, contributing to a future where 
+                    AI evolves as a more dynamic, collaborative, and transparent partner in the human endeavor.
+                </p>
+            </section>
+        </div>
+
+        <!-- FLEX Research Series Section -->
+        <section id="series" class="series-section">
+            <div class="container-wide">
+                <div class="series-intro">
+                    <h2 style="display: block; text-align: center; width: 100%; border: none;">🌳 FLEX Research Series</h2>
+                    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+                        FLEX is the <strong>foundational work</strong> of an evolving research series. As we explore 
+                        new applications, methodologies, and theoretical insights, this section will grow to showcase 
+                        the expanding ecosystem of FLEX-based research across diverse domains.
+                    </p>
+                </div>
+
+                <!-- Series Filter Tabs -->
+                <div class="series-tabs">
+                    <button class="series-tab active" data-filter="all">
+                        <span class="tab-icon">🌟</span>
+                        All Works
+                    </button>
+                    <button class="series-tab" data-filter="mathematics">
+                        <span class="tab-icon">🔢</span>
+                        Mathematics
+                    </button>
+                    <button class="series-tab" data-filter="chemistry">
+                        <span class="tab-icon">⚗️</span>
+                        Chemistry
+                    </button>
+                    <button class="series-tab" data-filter="biology">
+                        <span class="tab-icon">🧬</span>
+                        Biology
+                    </button>
+                    <button class="series-tab" data-filter="methodology">
+                        <span class="tab-icon">🔬</span>
+                        Methodology
+                    </button>
+                    <button class="series-tab" data-filter="applications">
+                        <span class="tab-icon">🤖</span>
+                        Applications
+                    </button>
+                    <button class="series-tab" data-filter="theory">
+                        <span class="tab-icon">📐</span>
+                        Theory
+                    </button>
+                </div>
+
+                <!-- Series Grid (populated by JavaScript) -->
+                <div id="series-grid" class="series-grid">
+                    <!-- Cards will be dynamically loaded here by series-manager.js -->
+                    <div style="text-align: center; padding: 3rem; color: #9ca3af;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+                        <p>Loading series works...</p>
+                    </div>
+                </div>
             </div>
         </section>
-    </div>
+
+        <!-- Team Section -->
+            <section id="team" style="background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%); padding: 3rem 2rem; border-radius: 16px; margin-bottom: 3rem;">
+                <div style="text-align: center;">
+                    <h2 style="border: none; display: block; width: 100%; text-align: center; margin-bottom: 2rem;">Core Research Team</h2>
+                    
+                    <div class="authors">
+                        <span class="author-name">Zhicheng Cai<sup>1,3,*</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Xinyuan Guo<sup>1,4,*</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Yu Pei<sup>1*</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Jiangtao Feng<sup>1,†</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Ya-Qin Zhang<sup>1,3</sup></span><span class="author-separator">,</span>
+                        <br>
+                        <span class="author-name">Wei-Ying Ma<sup>1,3</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Mingxuan Wang<sup>2,3</sup></span><span class="author-separator">,</span>
+                        <span class="author-name">Hao Zhou<sup>1,3,‡</sup></span>
+                    </div>
+
+                    <div class="affiliations">
+                        <span class="affiliation"><sup>1</sup>Institute for AI Industry Research (AIR), Tsinghua University</span>
+                        <span class="affiliation"><sup>2</sup>ByteDance Seed</span>
+                        <span class="affiliation"><sup>3</sup>SIA-Lab of Tsinghua AIR and ByteDance Seed</span>
+                        <span class="affiliation"><sup>4</sup>University of Chinese Academy of Sciences</span>
+                    </div>
+
+                    <div class="footer-notes">
+                        <p><sup>*</sup>Equal Contribution, <sup>†</sup>Project Lead, <sup>‡</sup>Corresponding Author</p>
+                        <p class="correspondence">✉️ Correspondence: <a href="mailto:zhouhao@air.tsinghua.edu.cn">zhouhao@air.tsinghua.edu.cn</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <div class="cta">
+                <div class="cta-content">
+                    <span class="cta-emoji">🚀</span>
+                    <h2>Join the FLEX Community</h2>
+                    <p>Explore the future of AI learning through experience accumulation</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://github.com/GenSI-THUAIR/FLEX" class="btn btn-primary" target="_blank" rel="noopener">
+                            <span class="btn-icon">⭐</span>
+                            <span>Star on GitHub</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                    </div>
+
+                    <div class="cta-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Domains Tested</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%+</span>
+                            <span class="stat-label">Best Improvement</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <span class="stat-label">Potential Applications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Citation Section -->
+            <section id="citation">
+                <h2>Citation</h2>
+                <div style="background-color: #f3f4f6; padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-top: 1rem;">
+                    <p style="font-family: 'Courier New', monospace; color: var(--text-color); margin: 0; line-height: 1.8;">
+                        If you use FLEX in your research, please cite our paper.<br>
+                        <em>Citation information will be added upon publication.</em>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 FLEX Project. All rights reserved.</p>
-        <p>
-            <a href="https://github.com/GenSI-THUAIR/FLEX" target="_blank">GitHub</a> | 
-            <a href="#introduction">Documentation</a> | 
-            <a href="#citation">Citation</a>
+    <footer style="background-color: #1f2937; color: #ffffff; text-align: center; padding: 2rem; margin-top: 4rem;">
+        <p>&copy; 2024-2025 FLEX Research Series. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">
+            <a href="https://github.com/GenSI-THUAIR/FLEX" target="_blank" rel="noopener" style="color: #3b82f6; text-decoration: none;">GitHub</a> | 
+            <a href="#introduction" style="color: #3b82f6; text-decoration: none;">Documentation</a> | 
+            <a href="#citation" style="color: #3b82f6; text-decoration: none;">Citation</a>
         </p>
     </footer>
 
-    <!-- Smooth Scrolling Script -->
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/series-manager.js"></script>
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Add scroll-based animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        });
-
-        // Add active state to navigation
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('section');
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= (sectionTop - 200)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
         // Case Study Tab Switching
         function switchTab(domain) {
             // Remove active class from all tabs and content
@@ -2307,6 +2133,20 @@
             
             // Show corresponding content
             document.getElementById(`${domain}-case`).classList.add('active');
+        }
+
+        // Toggle Results Table
+        function toggleResultsTable() {
+            const table = document.getElementById('results-table');
+            const toggleText = document.getElementById('toggle-text');
+            
+            if (table.classList.contains('show')) {
+                table.classList.remove('show');
+                toggleText.textContent = '📊 Show Detailed Results Table';
+            } else {
+                table.classList.add('show');
+                toggleText.textContent = '📊 Hide Detailed Results Table';
+            }
         }
     </script>
 </body>

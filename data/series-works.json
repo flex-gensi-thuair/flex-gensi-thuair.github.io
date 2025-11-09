@@ -1,0 +1,22 @@
+{
+  "series_works": [
+    {
+      "id": "flex-core-2025",
+      "title": "FLEX: Inheritable Intelligence via Forward Learning from Scaling Experience",
+      "status": "published",
+      "domain": "methodology",
+      "icon": "🌟",
+      "description": "The foundational work introducing the FLEX paradigm - a novel learning approach that shifts from gradient-based parameter updates to experience library construction and refinement.",
+      "preview_image": "asset/front_pic.png",
+      "date": "2025",
+      "metrics": {
+        "key_improvement": "AIME: 40% → 63.3% | USPTO: 20% → 30% | ProteinGym: 46% → 60%"
+      },
+      "links": {
+        "paper": "#introduction",
+        "code": "https://github.com/GenSI-THUAIR/FLEX"
+      },
+      "is_core": true
+    }
+  ]
+}
