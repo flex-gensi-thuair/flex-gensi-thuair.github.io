@@ -13,7 +13,7 @@
         "key_improvement": "AIME: 40% → 63.3% | USPTO: 20% → 30% | ProteinGym: 46% → 60%"
       },
       "links": {
-        "paper": "#introduction",
+        "paper": "https://arxiv.org/abs/2511.06449",
         "code": "https://github.com/GenSI-THUAIR/FLEX"
       },
       "is_core": true
